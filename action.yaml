@@ -9,7 +9,7 @@ inputs:
 
   files:
     description: "Files to upload."
-    required: true
+    required: false
     default: *.csv
 
   is_public:
