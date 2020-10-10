@@ -9,8 +9,10 @@ from distutils.util import strtobool
 from loguru import logger
 
 
-# Prepare temp dir
 
+def prepare_job():
+    """ Prepare temp dir"""
+    return
 # Resolve if dataset has to be created
 
 # Prepare temp dirname
