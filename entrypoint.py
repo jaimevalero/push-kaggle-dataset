@@ -24,6 +24,18 @@ def prepare_job():
         loader=PackageLoader('templates'),
         autoescape=select_autoescape(['html', 'xml'])
     )
+
+    INPUT_ID = os.environ.get('INPUT_ID')
+    REPO_NAME= os.environ.get('GITHUB_REPOSITORY').split("/")[-1]
+
+    TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
+
+    outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
+    with open("dataset-metadata.json", "w") as fh:
+        fh.write(outputText)
+    with open("dataset-metadata.json", 'r') as fin:
+        logger.debug(fin.read())
+
     return
 # Resolve if dataset has to be created
 
