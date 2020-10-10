@@ -10,10 +10,7 @@ from loguru import logger
 import tempfile
 
 from jinja2 import Environment, PackageLoader, select_autoescape
-env = Environment(
-    loader=PackageLoader('yourapplication', 'templates'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
+
 
 
 
@@ -23,6 +20,10 @@ def prepare_job():
     os.chdir(dirpath)
     template = env.get_template('templates/dataset-metadata.j2')
 
+    env = Environment(
+        loader=PackageLoader('templates'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
     return
 # Resolve if dataset has to be created
 
@@ -37,9 +38,8 @@ def prepare_job():
 def main():
     logger.info("Start")
     for key in os.environ.keys():
-        llave=os.environ[key][0]
-        valor=os.environ[key][1]
-        logger.debug(f"llave {llave} : {valor}")
+        valor=os.environ[key]
+        logger.debug(f"llave {key} : {valor}")
         print(os.environ.get('HOME', '/home/username/'))
 
     prepare_job()
