@@ -6,4 +6,4 @@ COPY . .
 RUN  pip install -r /usr/src/app/requirements.txt
 
 
-ENTRYPOINT ["python" , "entrypoint.py"]
+ENTRYPOINT ["python" , "/usr/src/app/entrypoint.py"]
