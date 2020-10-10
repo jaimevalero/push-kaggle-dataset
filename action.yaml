@@ -10,6 +10,7 @@ inputs:
   files:
     description: "Files path to uploadl."
     required: true
+    default: *.csv
 
   is_public:
     description: "Create publicly (default is private)."
