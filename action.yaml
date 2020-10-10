@@ -9,7 +9,7 @@ inputs:
 
   files:
     description: "Files to upload."
-    required: false
+    required: true
     default: "*.csv"
 
   title:
@@ -27,10 +27,7 @@ inputs:
     required: false
     default: commit message
 
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'
