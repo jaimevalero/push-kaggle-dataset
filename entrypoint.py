@@ -31,7 +31,6 @@ def main():
     prepare_job()
     logger.info("info")
     return
-#${{ github.event.head_commit.message }}
 
 if __name__ == '__main__':
     main()
