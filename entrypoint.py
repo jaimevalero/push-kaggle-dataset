@@ -7,11 +7,15 @@ import subprocess
 import shutil
 from distutils.util import strtobool
 from loguru import logger
+import tempfile
 
 
 
 def prepare_job():
     """ Prepare temp dir"""
+    dirpath = tempfile.mkdtemp()
+    os.chdir(dirpath)
+
     return
 # Resolve if dataset has to be created
 
