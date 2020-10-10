@@ -8,7 +8,7 @@ inputs:
     required: true
 
   files:
-    description: "Files path to uploadl."
+    description: "Files to upload."
     required: true
     default: *.csv
 
