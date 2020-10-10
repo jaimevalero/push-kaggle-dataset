@@ -83,5 +83,5 @@ if __name__ == '__main__':
 
     try:
         main()
-    except Exception ass e:
-        logger.exception(f"Exception {e.message}")
+    except Exception as e:
+        logger.error( f"Device {device}: "+ str(e))
