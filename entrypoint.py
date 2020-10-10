@@ -84,5 +84,5 @@ if __name__ == '__main__':
 
     try:
         main()
-    except Exception e:
-        logger.exception(f"Exception {e}")
+    except Exception ass e:
+        logger.exception(f"Exception {e.message}")
