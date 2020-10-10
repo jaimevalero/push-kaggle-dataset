@@ -65,7 +65,7 @@ def main():
     for key in os.environ.keys():
         valor=os.environ[key]
         logger.debug(f"llave {key} : {valor}")
-        print(os.environ.get('HOME', '/home/username/'))
+        #print(os.environ.get('HOME', '/home/username/'))
 
     prepare_job()
     logger.info("info")
