@@ -34,7 +34,7 @@ def prepare_job():
     result = execute(f" kaggle datasets status {INPUT_ID}")
     logger.debug(f"result: {result}")
 
-    has_to_create_new_dataset = not "ready" in result
+    has_to_create_new_dataset = not b"ready" in result
 
     if has_to_create_new_dataset:
         env = Environment(
