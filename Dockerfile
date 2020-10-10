@@ -1,7 +1,9 @@
-FROM python:3
+FROM python:3.8
 
 WORKDIR /usr/src/app
-
 COPY . .
-RUN  pip3.8 install -r /usr/src/app/requirements.txt
-CMD ["python" , "entrypoint.sh"]
+
+RUN  pip install -r /usr/src/app/requirements.txt
+
+CMD ["python" , "app.py"]
+   
