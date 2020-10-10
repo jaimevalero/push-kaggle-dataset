@@ -6,6 +6,7 @@ import tempfile
 import subprocess
 import shutil
 from distutils.util import strtobool
+from loguru import logger
 
 
 # Prepare temp dir
@@ -21,12 +22,17 @@ from distutils.util import strtobool
 # prepare meta json if no
 
 def main():
+    logger.info("Start")
+    for key in os.environ.keys():  print(f"llave: {key}")
+
     prepare_job()
+    logger.info("info")
     return
 #${{ github.event.head_commit.message }}
 
 if __name__ == '__main__':
-    for key in os.environ.keys():  print(f"llave: {key}")
+    main()
+
     print("|||||||||||||" , dir())
     print("|||||||||||||" ,globals())
     print("|||||||||||||",locals())
