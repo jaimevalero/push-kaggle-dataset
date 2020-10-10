@@ -61,7 +61,6 @@ def prepare_job():
 # prepare meta json if no
 
 def main():
-    try:
     logger.info("Start")
     for key in os.environ.keys():
         valor=os.environ[key]
