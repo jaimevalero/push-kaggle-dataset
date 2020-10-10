@@ -12,7 +12,7 @@ inputs:
     required: false
     default: "*.csv"
 
-  files:
+  title:
     description: "Title of the dataset, if it has to be created."
     required: false
     default: "*.csv"
