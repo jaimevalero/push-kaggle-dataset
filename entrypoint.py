@@ -61,6 +61,7 @@ def prepare_job():
 # prepare meta json if no
 
 def main():
+    try:
     logger.info("Start")
     for key in os.environ.keys():
         valor=os.environ[key]
@@ -72,7 +73,7 @@ def main():
     return
 
 if __name__ == '__main__':
-    main()
+
 
     print("|||||||||||||" , dir())
     print("|||||||||||||" ,globals())
@@ -80,3 +81,8 @@ if __name__ == '__main__':
     for dirname, _, filenames in os.walk('/'):
         for filename in filenames:
             print(os.path.join(dirname, filename))
+
+    try:
+        main()
+    except Exception:
+        logger.exception(f"Exception {e}")
