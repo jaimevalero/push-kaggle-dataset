@@ -24,7 +24,7 @@ from loguru import logger
 def main():
     logger.info("Start")
     for key in os.environ.keys():
-        llave=os.environ[key][1]
+        llave=os.environ[key][0]
         valor=os.environ[key][1]
         logger.debug(f"{llave} : {valor}")
 
