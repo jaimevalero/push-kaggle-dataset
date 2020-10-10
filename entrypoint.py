@@ -9,12 +9,19 @@ from distutils.util import strtobool
 from loguru import logger
 import tempfile
 
+from jinja2 import Environment, PackageLoader, select_autoescape
+env = Environment(
+    loader=PackageLoader('yourapplication', 'templates'),
+    autoescape=select_autoescape(['html', 'xml'])
+)
+
 
 
 def prepare_job():
     """ Prepare temp dir"""
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
+    template = env.get_template('templates/dataset-metadata.j2')
 
     return
 # Resolve if dataset has to be created

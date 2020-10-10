@@ -1,4 +1,4 @@
 kaggle
 loguru==0.5.3
 PyYAML==5.1
-jinja
+Jinja2==2.10
