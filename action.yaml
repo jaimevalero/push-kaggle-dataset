@@ -2,10 +2,21 @@
 name: 'Push kaggle dataset'
 description: 'Upload dataset stores in github repository'
 inputs:
+
+  id:
+    description: "Dataset identifier in format {username}/{dataset})."
+    required: true
+
   is_public:
     description: "Create publicly (default is private)."
     required: false
     default: false
+
+  version_notes:
+    description: 'Message describing the new version'
+    required: false
+    default: commit message
+
   who-to-greet:  # id of input
     description: 'Who to greet'
     required: true

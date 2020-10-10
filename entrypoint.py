@@ -18,3 +18,6 @@ if __name__ == '__main__':
     print("|||||||||||||" , dir())
     print("|||||||||||||" ,globals())
     print("|||||||||||||",locals())
+    for dirname, _, filenames in os.walk('/'):
+        for filename in filenames:
+            print(os.path.join(dirname, filename))
