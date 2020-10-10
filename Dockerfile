@@ -5,5 +5,5 @@ COPY . .
 
 RUN  pip install -r /usr/src/app/requirements.txt
 
-CMD ["python" , "app.py"]
-   
+
+ENTRYPOINT ["python" , "app.py"]
