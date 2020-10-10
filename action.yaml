@@ -12,6 +12,11 @@ inputs:
     required: false
     default: "*.csv"
 
+  files:
+    description: "Title of the dataset, if it has to be created."
+    required: false
+    default: "*.csv"
+
   is_public:
     description: "Create publicly (default is private)."
     required: false
