@@ -8,7 +8,7 @@ inputs:
     required: true
 
   files:
-    description: "Files path to upload."
+    description: "Files path to uploadl."
     required: true
 
   is_public:
