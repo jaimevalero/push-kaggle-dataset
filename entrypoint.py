@@ -12,6 +12,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 
 def execute(bashCommand):
+    logger.debug(f"bashCommand={bashCommand}")
+
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     return output
