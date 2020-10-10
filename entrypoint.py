@@ -5,12 +5,16 @@ import json
 import tempfile
 import subprocess
 import shutil
-from distutils.util import strtobool
 from loguru import logger
 import tempfile
-
+import subprocess
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+
+def execute(bashCommand):
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    return output
 
 
 
@@ -18,23 +22,32 @@ def prepare_job():
     """ Prepare temp dir"""
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
-    template = env.get_template('templates/dataset-metadata.j2')
 
-    env = Environment(
-        loader=PackageLoader('templates'),
-        autoescape=select_autoescape(['html', 'xml'])
-    )
+    #kaggle datasets status jaimevalero/covid19-madrid
 
     INPUT_ID = os.environ.get('INPUT_ID')
-    REPO_NAME= os.environ.get('GITHUB_REPOSITORY').split("/")[-1]
+    result = execute(f" kaggle datasets status {INPUT_ID}")
+    logger.debug(f"result: {result}")
 
-    TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
+    has_to_create_new_dataset = not "ready" in result
 
-    outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
-    with open("dataset-metadata.json", "w") as fh:
-        fh.write(outputText)
-    with open("dataset-metadata.json", 'r') as fin:
-        logger.debug(fin.read())
+    if has_to_create_new_dataset:
+        env = Environment(
+            loader=PackageLoader('templates'),
+            autoescape=select_autoescape(['html', 'xml'])
+        )
+        template = env.get_template('templates/dataset-metadata.j2')
+
+        INPUT_ID = os.environ.get('INPUT_ID')
+        REPO_NAME= os.environ.get('GITHUB_REPOSITORY').split("/")[-1]
+        TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
+        logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
+
+        outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
+        with open("dataset-metadata.json", "w") as fh:
+            fh.write(outputText)
+        with open("dataset-metadata.json", 'r') as fin:
+            logger.debug(fin.read())
 
     return
 # Resolve if dataset has to be created
