@@ -1,0 +1,20 @@
+# action.yml
+name: 'Push kaggle dataset'
+description: 'Upload dataset stores in github repository'
+inputs:
+  is_public:
+    description: "Create publicly (default is private)."
+    required: false
+    default: false
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
