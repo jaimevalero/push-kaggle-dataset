@@ -1,6 +1,6 @@
 # action.yml
 name: 'Push kaggle dataset'
-description: 'Upload dataset stores in github repository'
+description: 'Upload dataset from github repository to kaggle'
 inputs:
 
   id:
