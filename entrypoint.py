@@ -16,6 +16,9 @@ def execute(bashCommand):
 
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
+    logger.debug(f"output={output}")
+    logger.debug(f"error={error}")
+
     return output
 
 
