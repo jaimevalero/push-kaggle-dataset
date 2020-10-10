@@ -26,7 +26,7 @@ def main():
     for key in os.environ.keys():
         llave=os.environ[key][0]
         valor=os.environ[key][1]
-        logger.debug(f"{llave} : {valor}")
+        logger.debug(f"llave {llave} : {valor}")
         print(os.environ.get('HOME', '/home/username/'))
 
     prepare_job()
