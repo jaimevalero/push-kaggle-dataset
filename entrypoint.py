@@ -8,8 +8,20 @@ import shutil
 from distutils.util import strtobool
 
 
+# Prepare temp dir
+
+# Resolve if dataset has to be created
+
+# Prepare temp dirname
+
+# Prepare filenames
+
+# PRepare
+
+# prepare meta json if no
 
 def main():
+    prepare_job()
     return
 #${{ github.event.head_commit.message }}
 
