@@ -14,7 +14,7 @@ def main():
 #${{ github.event.head_commit.message }}
 
 if __name__ == '__main__':
-    for key in os.environ.keys():  print(f"key: {key}")
+    for key in os.environ.keys():  print(f"llave: {key}")
     print("|||||||||||||" , dir())
     print("|||||||||||||" ,globals())
     print("|||||||||||||",locals())
