@@ -23,7 +23,7 @@ from loguru import logger
 
 def main():
     logger.info("Start")
-    for key in os.environ.keys():  print(f"llave: {key}")
+    for key in os.environ.keys():  logger.debug(f"llave: {key}")
 
     prepare_job()
     logger.info("info")
