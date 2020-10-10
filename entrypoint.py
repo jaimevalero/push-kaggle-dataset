@@ -15,7 +15,6 @@ def main():
 
 if __name__ == '__main__':
     for key in os.environ.keys():  print(f"key: {key}")
-    print(os.environ.keys())
     print("|||||||||||||" , dir())
     print("|||||||||||||" ,globals())
     print("|||||||||||||",locals())
