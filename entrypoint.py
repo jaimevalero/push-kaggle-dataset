@@ -84,7 +84,7 @@ def prepare_job():
     logger.debug(f"has_to_create_new_dataset={has_to_create_new_dataset}")
 
     if has_to_create_new_dataset:
-        with open(os.environ.get('GITHUB_WORKSPACE') +"/" +'templates/dataset-metadata.j2') as file_:
+        with open("/app/templates/dataset-metadata.j2") as file_:
             template = Template(file_.read())
         outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
 
