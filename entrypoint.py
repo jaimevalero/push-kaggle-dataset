@@ -44,7 +44,7 @@ def copy_files():
                     current_work_directory + "/" + os.path.basename(your_path) )
                 logger.info(f"file {expanded_dataset_file}")
 
-    logger.success(glob.glob('*'))
+    logger.success(glob.glob(current_work_directory + "/" +'*'))
     return
 
 def prepare_job():
