@@ -146,7 +146,7 @@ def print_environment():
 @logger.catch(onerror=lambda _: sys.exit(1))
 def main():
     logger.info("Start")
-    #print_files()
+    print_files()
     print_environment()
 
     prepare_job()
