@@ -91,6 +91,7 @@ def prepare_job():
         template = env.get_template('templates/dataset-metadata.j2')
 
         INPUT_ID = os.environ.get('INPUT_ID')
+        INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC')
         REPO_NAME= os.environ.get('GITHUB_REPOSITORY').split("/")[-1]
         TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
         logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
@@ -100,6 +101,7 @@ def prepare_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
+        vars = " --public " if INPUT_IS_PUBLIC else " "
     else:
         command=f"kaggle datasets metadata {INPUT_ID}"
         result = execute(f"{command}")
