@@ -89,7 +89,12 @@ def perform_job():
         # Render template
         with open("/app/templates/dataset-metadata.j2") as file_:
             template = Template(file_.read())
-        outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
+        outputText = template.render(INPUT_ID=INPUT_ID,
+            INPUT_TITLE=INPUT_TITLE,
+            INPUT_SUBTITLE=INPUT_SUBTITLE,
+            INPUT_DESCRIPTION=INPUT_DESCRIPTION
+            )
+            
         with open("dataset-metadata.json", "w") as fh:
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
