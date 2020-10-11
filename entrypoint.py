@@ -10,6 +10,7 @@ import tempfile
 import subprocess
 from jinja2 import Environment, PackageLoader, select_autoescape
 import glob
+from shutil import copyfile
 
 def execute(bashCommand):
     logger.debug(f"bashCommand={bashCommand}")
@@ -22,13 +23,18 @@ def execute(bashCommand):
     return output
 
 def copy_files():
-    FILES = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
+    dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
     logger.info(f"FILES={FILES}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
-    for file in FILES : +
-        glob.glob(f"{FILE_PATH}/{file}")
-        if os.path.exists(file) : continue
-
+    for dataset_file in dataset_file_in_yaml :
+        expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
+        for expanded_dataset_file in expanded_dataset_files  :
+            # If file already is there, we do not copy it
+            if os.path.exists(expanded_dataset_file.split("/")[-1]) :
+                continue
+            else :
+                shutil.copy(expanded_dataset_file,".")
+                logger.info(f"file {expanded_dataset_file}")
 
 
 
