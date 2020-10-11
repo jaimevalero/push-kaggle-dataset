@@ -11,7 +11,7 @@ for value in values:
     print (value)
     os.environ['INPUT_IS_PUBLIC'] = value
     #resultado = os.environ.get('INPUT_IS_PUBLIC',False) == True
-    resultado =bool( strtobool(value))
+    resultado =bool( strtobool(str(value)))
 
     print (value,resultado)
 
