@@ -99,9 +99,6 @@ def prepare_job():
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
 
-
-
-
         command=f"kaggle datasets create  {INPUT_ID} {vars}"
         result = execute(f"{command}")
         logger.info(f"result for {command} is result={result}")
