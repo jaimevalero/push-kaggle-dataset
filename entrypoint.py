@@ -95,7 +95,7 @@ def prepare_job():
         result = execute(f"kaggle datasets create  {vars}")
 
     else:
-        execute(f"kaggle datasets metadata {INPUT_ID}")
+        execute(f"""  kaggle datasets metadata {INPUT_ID}""")
         execute(f"""  kaggle datasets version -m "{commit_message}" """)
         upload_files()
     return
