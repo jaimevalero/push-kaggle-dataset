@@ -65,32 +65,41 @@ def prepare_job():
 # PRepare
 
 # prepare meta json if no
+def print_files():
+    """
+        Helper function to know where are my files
+    """
+
+    for dirname, _, filenames in os.walk('/'):
+        for filename in filenames:
+            print(os.path.join(dirname, filename))
+    return
 
 def print_environment():
-    """ Helper function to know where I am """
+    """
+        Helper function to know where are my variables
+    """
     variables_functions = [dir(), globals() , locals()]
     for func in variables_functions:
         logger.debug( func)
+    # Print environment varriables
     for key in os.environ.keys():
         valor=os.environ[key]
         logger.debug(f"llave {key} : {valor}")
+    return
 
 def main():
     logger.info("Start")
-
-        #print(os.environ.get('HOME', '/home/username/'))
+    #
+    print_files()
+    print_environment()
 
     prepare_job()
+
     logger.info("info")
     return
 
 if __name__ == '__main__':
-
-
-    #for dirname, _, filenames in os.walk('/'):
-    #    for filename in filenames:
-    #        print(os.path.join(dirname, filename))
-
     try:
         main()
     except Exception as e:
