@@ -66,11 +66,18 @@ def prepare_job():
 
 # prepare meta json if no
 
-def main():
-    logger.info("Start")
+def print_environment():
+    """ Helper function to know where I am """
+    variables_functions = [dir(), globals() , locals()]
+    for func in variables_functions:
+        logger.debug( func)
     for key in os.environ.keys():
         valor=os.environ[key]
         logger.debug(f"llave {key} : {valor}")
+
+def main():
+    logger.info("Start")
+
         #print(os.environ.get('HOME', '/home/username/'))
 
     prepare_job()
@@ -80,9 +87,6 @@ def main():
 if __name__ == '__main__':
 
 
-    print("|||||||||||||" , dir())
-    print("|||||||||||||" ,globals())
-    print("|||||||||||||",locals())
     #for dirname, _, filenames in os.walk('/'):
     #    for filename in filenames:
     #        print(os.path.join(dirname, filename))
