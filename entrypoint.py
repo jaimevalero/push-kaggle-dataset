@@ -12,6 +12,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 import glob
 from shutil import copyfile
 
+commit_message=""
 def execute(bashCommand):
     """ Execute a line of command """
     logger.debug(f"bashCommand={bashCommand}")
@@ -66,6 +67,7 @@ def prepare_job():
         Prepare temp dir
     """
 
+    commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
