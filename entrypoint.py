@@ -60,7 +60,7 @@ def copy_files():
     logger.success("Contents to be uploaded: " , glob.glob(current_work_directory + "/" +'*'))
     return
 
-def prepare_job():
+def perform_jpb():
     """
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
@@ -139,9 +139,8 @@ def main():
     #print_files()
     print_environment()
 
-    prepare_job()
-    #copy_files()
-    #upload_files()
+    perform_jpb()
+    get_files_status()
 
     logger.info("info")
     return
