@@ -13,9 +13,19 @@ inputs:
     default: "*.csv"
 
   title:
-    description: "Title of the dataset, if it has to be created."
+    description: "Title of the dataset, only if it has to be created."
     required: false
     default: "dataset id"
+
+  subtitle:
+    description: "Subtitle of the dataset, only if it has to be created."
+    required: false
+    default: ""
+
+  title:
+    description: "Description of the dataset, only  if it has to be created."
+    required: false
+    default: ""
 
   is_public:
     description: "Create publicly (default is private)."
