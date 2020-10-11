@@ -22,7 +22,11 @@ def execute(bashCommand):
     return output
 
 def copy_files():
-    pass
+    FILES = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
+    logger.info(f"error={FILES}")
+
+
+
 
 def prepare_job():
     """ Prepare temp dir"""
@@ -54,7 +58,7 @@ def prepare_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
-
+    copy_files()
     return
 # Resolve if dataset has to be created
 
