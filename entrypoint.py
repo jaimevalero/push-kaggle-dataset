@@ -106,6 +106,7 @@ def print_environment():
         logger.debug(f"llave {key} : {valor}")
     return
 
+@logger.catch
 def main():
     logger.info("Start")
     #
@@ -118,7 +119,4 @@ def main():
     return
 
 if __name__ == '__main__':
-    try:
-        main()
-    except Exception as e:
-        logger.error( "Exception Error "+ str(e))
+    main()
