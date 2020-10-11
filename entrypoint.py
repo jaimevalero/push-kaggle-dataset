@@ -29,7 +29,7 @@ def copy_files():
     dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES').split("\n")]
     logger.info(f"dataset_file_in_yaml={dataset_file_in_yaml}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
-
+ 
     for dataset_file in dataset_file_in_yaml :
         logger.debug(f"dataset_file={dataset_file}")
         # We have to explode * expressions
