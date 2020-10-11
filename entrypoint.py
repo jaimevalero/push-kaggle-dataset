@@ -38,6 +38,7 @@ def copy_files():
                 logger.info(f"file {expanded_dataset_file}")
 
     print(glob.glob('*'))
+    return
 
 def prepare_job():
     """ Prepare temp dir"""
@@ -114,7 +115,7 @@ def main():
 
     prepare_job()
     copy_files()
-    
+
     logger.info("info")
     return
 
