@@ -32,6 +32,7 @@ def copy_files():
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
 
     for dataset_file in dataset_file_in_yaml :
+        if not dataset_file : continue 
         logger.debug(f"dataset_file={dataset_file}")
         # We have to explode * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
@@ -43,8 +44,6 @@ def copy_files():
                 dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file)
                 logger.info(f"copy {src} to {dst}")
                 shutil.copy(src,dst)
-
-                logger.info(f"file {expanded_dataset_file}")
 
     logger.success(glob.glob(current_work_directory + "/" +'*'))
     return
