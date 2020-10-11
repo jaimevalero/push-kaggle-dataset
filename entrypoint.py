@@ -32,9 +32,8 @@ def copy_files():
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
             # If file already is there, we do not copy it
-            if os.path.exists(expanded_dataset_file.split("/")[-1]) :
-                continue
-            else :
+            file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
+            if file_not_exists_on_dst : 
                 shutil.copy(expanded_dataset_file,".")
                 logger.info(f"file {expanded_dataset_file}")
 
