@@ -41,7 +41,7 @@ def copy_files():
                 shutil.copy(expanded_dataset_file,".")
                 logger.info(f"file {expanded_dataset_file}")
 
-    logger.sucess(glob.glob('*'))
+    logger.success(glob.glob('*'))
     return
 
 def prepare_job():
