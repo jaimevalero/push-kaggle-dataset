@@ -26,7 +26,7 @@ def copy_files():
     """
         Parse user yaml and copy files to temp directory
     """
-    dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
+    dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES').split("\n")]
     logger.info(f"FILES={FILES}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
 
