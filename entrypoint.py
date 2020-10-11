@@ -70,7 +70,10 @@ def perform_job():
 
     # Parse variables
     INPUT_ID = os.environ.get('INPUT_ID')
-    INPUT_TITLE = os.environ.get('INPUT_TITLE',INPUT_ID.split("/")[1])
+    INPUT_TITLE       = os.environ.get('INPUT_TITLE',INPUT_ID.split("/")[1])
+    INPUT_SUBTITLE    = os.environ.get('INPUT_SUBTITLE',"")
+    INPUT_DESCRIPTION = os.environ.get('INPUT_DESCRIPTION',"")
+
     INPUT_IS_PUBLIC =bool( strtobool(str( os.environ.get('INPUT_IS_PUBLIC',False))))
     logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
     vars = " --public " if INPUT_IS_PUBLIC else " "
