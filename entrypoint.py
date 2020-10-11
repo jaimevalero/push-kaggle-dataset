@@ -23,7 +23,7 @@ def execute(bashCommand):
 
 def copy_files():
     FILES = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
-    logger.info(f"error={FILES}")
+    logger.info(f"FILES={FILES}")
 
 
 
