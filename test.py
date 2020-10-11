@@ -1,7 +1,7 @@
 import os
 import sys
 
-from distutils import strtobool
+from distutils.util import strtobool
 values = ('True','False',"true","false",True,False)
 
 for value in values:
