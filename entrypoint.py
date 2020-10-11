@@ -29,10 +29,7 @@ def upload_files():
     # Get message
     # Get public/private
     # kaggle datasets version -m "Daily update  $DATE"
-
-    result = execute(f" kaggle datasets status {INPUT_ID}")
-    logger.debug(f"result for {INPUT_ID} is result={result}")
-        #kaggle datasets status jaimevalero/covid19-madrid
+    #kaggle datasets status jaimevalero/covid19-madrid
     stdout=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
     logger.info(f"upload results={stdout}")
     return
