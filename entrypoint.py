@@ -33,7 +33,7 @@ def upload_files():
     result = execute(f" kaggle datasets status {INPUT_ID}")
     logger.debug(f"result for {INPUT_ID} is result={result}")
         #kaggle datasets status jaimevalero/covid19-madrid
-
+    commit_message=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
     return
 
 def copy_files():
@@ -69,7 +69,7 @@ def prepare_job():
     """
 
     commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
-    logger.debug(f"commit_message {commit_message}={commit_message}")
+    logger.debug(f"commit_message={commit_message}")
 
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
