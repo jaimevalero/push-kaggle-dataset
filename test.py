@@ -7,7 +7,7 @@ from distutils.util import strtobool
 
 values = ('True','False',"true","false",True,False)
 
-for value,j in enumerate(values):
+for j,value in enumerate(values):
     print (value)
     os.environ['INPUT_IS_PUBLIC'] = value
     #resultado = os.environ.get('INPUT_IS_PUBLIC',False) == True
