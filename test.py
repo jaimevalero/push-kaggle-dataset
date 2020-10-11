@@ -1,6 +1,6 @@
 import os
 
-values = ['True','False',"true","false",True,False]
+values = ('True','False',"true","false",True,False)
 
 for value in values:
     os.environ['INPUT_IS_PUBLIC'] = values
