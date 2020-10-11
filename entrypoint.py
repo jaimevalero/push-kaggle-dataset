@@ -19,10 +19,10 @@ commit_message=""
 
 def execute(bashCommand):
     """ Execute a line of command """
-    logger.debug(f"bashCommand={bashCommand}")
+    logger.info(f"bashCommand={bashCommand}")
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
-    logger.debug(f"output={output}")
+    logger.info(f"output={output}")
     logger.debug(f"error={error}")
     #
     return output
