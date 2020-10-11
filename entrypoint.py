@@ -95,7 +95,7 @@ def perform_job():
             INPUT_SUBTITLE=INPUT_SUBTITLE,
             INPUT_DESCRIPTION=INPUT_DESCRIPTION
             )
-            
+
         with open("dataset-metadata.json", "w") as fh:
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
@@ -137,7 +137,7 @@ def main():
     logger.info("Start")
     print_environment()
     perform_job()
-    get_files_status()
+    #get_files_status()
     logger.info("End")
 
     return
