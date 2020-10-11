@@ -1,5 +1,5 @@
 import os
-
+import distutils
 values = ('True','False',"true","false",True,False)
 
 for value in values:
