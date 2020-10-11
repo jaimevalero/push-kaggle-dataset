@@ -23,6 +23,9 @@ def execute(bashCommand):
     return output
 
 def copy_files():
+    """
+        Parse user yaml and copy files to temp directory
+    """
     dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
     logger.info(f"FILES={FILES}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
@@ -41,7 +44,9 @@ def copy_files():
     return
 
 def prepare_job():
-    """ Prepare temp dir"""
+    """
+        Prepare temp dir
+    """
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
