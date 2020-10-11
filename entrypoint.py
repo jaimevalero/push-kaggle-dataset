@@ -13,6 +13,7 @@ import glob
 from shutil import copyfile
 
 def execute(bashCommand):
+    """ Execute a line of command """
     logger.debug(f"bashCommand={bashCommand}")
     #
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
