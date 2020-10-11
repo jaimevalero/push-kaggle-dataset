@@ -85,6 +85,8 @@ def prepare_job():
 
     if has_to_create_new_dataset:
         env = Environment(
+            loader=PackageLoader('templates'),
+            autoescape=select_autoescape(['html', 'xml'])
         )
         template = env.get_template('templates/dataset-metadata.j2')
 
