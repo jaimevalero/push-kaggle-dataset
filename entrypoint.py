@@ -20,7 +20,6 @@ commit_message=""
 def execute(bashCommand):
     """ Execute a line of command """
     logger.debug(f"bashCommand={bashCommand}")
-    #
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     logger.debug(f"output={output}")
@@ -28,17 +27,11 @@ def execute(bashCommand):
     #
     return output
 
-def upload_files():
-    # Get message
-    # Get public/private
-    # kaggle datasets version -m "Daily update  $DATE"
-    stdout=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
-    logger.info(f"upload results={stdout}")
-
+def get_files_status():
     INPUT_ID = os.environ.get('INPUT_ID')
     stdout=execute(f"""  kaggle datasets files {INPUT_ID} """).decode("utf-8").replace("\n","")
     logger.info(f"upload results={stdout}")
-    return
+
 
 def copy_files():
     """
@@ -71,7 +64,6 @@ def prepare_job():
     """
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
-
     commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
     logger.debug(f"commit_message={commit_message}")
     dirpath = tempfile.mkdtemp()
@@ -100,15 +92,12 @@ def prepare_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
+        result = execute(f"kaggle datasets create  {vars}")
 
-        command=f"kaggle datasets create  {vars}"
-        result = execute(f"{command}")
-        #logger.info(f"result for {command} is result={result}")
     else:
-        command=f"kaggle datasets metadata {INPUT_ID}"
-        result = execute(f"{command}")
-        logger.debug(f"result for {command} is result={result}")
-
+        execute(f"kaggle datasets metadata {INPUT_ID}")
+        execute(f"""  kaggle datasets version -m "{commit_message}" """)
+        upload_files()
     return
 # Resolve if dataset has to be created
 
@@ -152,7 +141,7 @@ def main():
 
     prepare_job()
     #copy_files()
-    upload_files()
+    #upload_files()
 
     logger.info("info")
     return
