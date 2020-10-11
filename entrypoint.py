@@ -105,6 +105,7 @@ def perform_job():
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
         pip.main(['install', '--upgrade', 'kaggle'])
+        # pparently whitespaces are not allowed
         commit_message = commit_message.replace(" ","_")
         execute(f"""  kaggle datasets version --message "{commit_message}" """)
     return
