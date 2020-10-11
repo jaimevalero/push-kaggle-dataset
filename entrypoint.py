@@ -77,6 +77,7 @@ def prepare_job():
     os.chdir(dirpath)
 
     INPUT_ID = os.environ.get('INPUT_ID')
+    INPUT_TITLE = os.environ.get('INPUT_TITLE',INPUT_ID)
     result = execute(f" kaggle datasets status {INPUT_ID}")
     logger.debug(f"result for {INPUT_ID} is result={result}")
 
