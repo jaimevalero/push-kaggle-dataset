@@ -26,7 +26,9 @@ def copy_files():
     dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES ').split("\n")]
     logger.info(f"FILES={FILES}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
+
     for dataset_file in dataset_file_in_yaml :
+        # We have to explode * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
             # If file already is there, we do not copy it
@@ -36,7 +38,7 @@ def copy_files():
                 shutil.copy(expanded_dataset_file,".")
                 logger.info(f"file {expanded_dataset_file}")
 
-
+    print(glob.glob('*'))
 
 def prepare_job():
     """ Prepare temp dir"""
@@ -69,6 +71,7 @@ def prepare_job():
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
     copy_files()
+
     return
 # Resolve if dataset has to be created
 
