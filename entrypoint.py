@@ -8,7 +8,8 @@ import shutil
 from loguru import logger
 import tempfile
 import subprocess
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Template
+
 import glob
 from shutil import copyfile
 import sys
@@ -82,11 +83,9 @@ def prepare_job():
     has_to_create_new_dataset = not "ready" in str(result)
 
     if has_to_create_new_dataset:
-        env = Environment(
-            loader=PackageLoader('templates'),
-            autoescape=select_autoescape(['html', 'xml'])
-        )
-        template = env.get_template('templates/dataset-metadata.j2')
+        with open('templates/dataset-metadata.j2') as file_:
+            template = Template(file_.read())
+        outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
 
         INPUT_ID = os.environ.get('INPUT_ID')
         INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  | os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
@@ -94,7 +93,6 @@ def prepare_job():
         TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
         logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
 
-        outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
         with open("dataset-metadata.json", "w") as fh:
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
