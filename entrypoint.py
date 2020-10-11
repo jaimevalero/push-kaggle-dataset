@@ -85,7 +85,7 @@ def prepare_job():
 
     if has_to_create_new_dataset:
         env = Environment(
-            loader=PackageLoader(''),
+            loader=PackageLoader('templates'),
             autoescape=select_autoescape(['html', 'xml'])
         )
         template = env.get_template('templates/dataset-metadata.j2')
@@ -110,7 +110,7 @@ def prepare_job():
     else:
         command=f"kaggle datasets metadata {INPUT_ID}"
         result = execute(f"{command}")
-        logger.info(f"result for {command} is result={result}")
+        logger.debug(f"result for {command} is result={result}")
 
     return
 # Resolve if dataset has to be created
