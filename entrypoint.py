@@ -55,7 +55,7 @@ def prepare_job():
 
     INPUT_ID = os.environ.get('INPUT_ID')
     result = execute(f" kaggle datasets status {INPUT_ID}")
-    logger.debug(f"result: {result}")
+    logger.debug(f"result for {INPUT_ID} is result={result}")
 
     has_to_create_new_dataset = not "ready" in str(result)
 
