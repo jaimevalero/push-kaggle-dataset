@@ -69,7 +69,7 @@ def prepare_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
-    copy_files()
+
 
     return
 # Resolve if dataset has to be created
@@ -109,12 +109,12 @@ def print_environment():
 @logger.catch
 def main():
     logger.info("Start")
-    #
     #print_files()
     #print_environment()
 
     prepare_job()
-
+    copy_files()
+    
     logger.info("info")
     return
 
