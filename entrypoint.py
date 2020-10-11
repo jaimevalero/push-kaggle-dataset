@@ -79,9 +79,8 @@ def prepare_job():
     # Parse variables
     INPUT_ID = os.environ.get('INPUT_ID')
     INPUT_TITLE = os.environ.get('INPUT_TITLE',INPUT_ID.split("/")[1])
-    INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  |
-        os.environ.get('INPUT_IS_PUBLIC',False) == "True" |
-        os.environ.get('INPUT_IS_PUBLIC',False) == "true"
+    INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  |     os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
+    INPUT_IS_PUBLIC =bool( strtobool(str( os.environ.get('INPUT_IS_PUBLIC',False))))
     logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
     vars = " --public " if INPUT_IS_PUBLIC else " "
 
