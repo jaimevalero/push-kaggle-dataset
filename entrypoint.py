@@ -139,7 +139,7 @@ def main():
     #print_files()
     print_environment()
 
-    perform_jpb()
+    ()
     get_files_status()
 
     logger.info("info")
