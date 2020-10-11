@@ -117,7 +117,7 @@ def print_environment():
 def main():
     logger.info("Start")
     #print_files()
-    #print_environment()
+    print_environment()
 
     prepare_job()
     copy_files()
