@@ -11,6 +11,7 @@ import subprocess
 from jinja2 import Environment, PackageLoader, select_autoescape
 import glob
 from shutil import copyfile
+import sys
 
 commit_message=""
 
@@ -147,7 +148,7 @@ def print_environment():
         logger.debug(f"llave {key} : {valor}")
     return
 
-@logger.catch
+@logger.catch(onerror=lambda _: sys.exit(1))
 def main():
     logger.info("Start")
     #print_files()
