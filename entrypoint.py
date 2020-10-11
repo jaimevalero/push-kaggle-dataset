@@ -131,6 +131,8 @@ def main():
     print_environment()
     perform_job()
     get_files_status()
+    logger.info("End")
+
     return
 
 if __name__ == '__main__':
