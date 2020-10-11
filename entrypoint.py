@@ -88,15 +88,16 @@ def prepare_job():
         with open("/app/templates/dataset-metadata.j2") as file_:
             template = Template(file_.read())
         outputText = template.render(INPUT_ID=INPUT_ID, INPUT_TITLE=INPUT_TITLE)
+        with open("dataset-metadata.json", "w") as fh:
+            fh.write(outputText)
+        with open("dataset-metadata.json", 'r') as fin:
+            logger.debug(fin.read())
+
 
         INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  | os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
         logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
         vars = " --public " if INPUT_IS_PUBLIC else " "
 
-        with open("dataset-metadata.json", "w") as fh:
-            fh.write(outputText)
-        with open("dataset-metadata.json", 'r') as fin:
-            logger.debug(fin.read())
 
         command=f"kaggle datasets create  {INPUT_ID} {vars}"
         result = execute(f"{command}")
