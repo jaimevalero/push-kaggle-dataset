@@ -21,7 +21,8 @@ def execute(bashCommand):
 
     return output
 
-
+def copy_files():
+    pass
 
 def prepare_job():
     """ Prepare temp dir"""
