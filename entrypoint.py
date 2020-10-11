@@ -60,7 +60,7 @@ def copy_files():
     logger.success("Contents to be uploaded: " , glob.glob(current_work_directory + "/" +'*'))
     return
 
-def perform_jpb():
+def perform_job():
     """
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
@@ -99,15 +99,7 @@ def perform_jpb():
         execute(f"""  kaggle datasets version -m "{commit_message}" """)
         upload_files()
     return
-# Resolve if dataset has to be created
 
-# Prepare temp dirname
-
-# Prepare filenames
-
-# PRepare
-
-# prepare meta json if no
 def print_files():
     """
         Helper function to know where are my files.
@@ -136,13 +128,9 @@ def print_environment():
 @logger.catch(onerror=lambda _: sys.exit(1))
 def main():
     logger.info("Start")
-    #print_files()
     print_environment()
-
-    ()
+    perform_job()
     get_files_status()
-
-    logger.info("info")
     return
 
 if __name__ == '__main__':
