@@ -72,11 +72,8 @@ def prepare_job():
 
     commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
     logger.debug(f"commit_message={commit_message}")
-
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
-
-    #kaggle datasets status jaimevalero/covid19-madrid
 
     INPUT_ID = os.environ.get('INPUT_ID')
     result = execute(f" kaggle datasets status {INPUT_ID}")
