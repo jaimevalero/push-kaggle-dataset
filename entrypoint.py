@@ -33,7 +33,7 @@ def copy_files():
         for expanded_dataset_file in expanded_dataset_files  :
             # If file already is there, we do not copy it
             file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
-            if file_not_exists_on_dst : 
+            if file_not_exists_on_dst :
                 shutil.copy(expanded_dataset_file,".")
                 logger.info(f"file {expanded_dataset_file}")
 
@@ -83,7 +83,8 @@ def prepare_job():
 # prepare meta json if no
 def print_files():
     """
-        Helper function to know where are my files
+        Helper function to know where are my files.
+        Just for debug
     """
 
     for dirname, _, filenames in os.walk('/'):
@@ -93,7 +94,8 @@ def print_files():
 
 def print_environment():
     """
-        Helper function to know where are my variables
+        Helper function to know where are my variables.
+        Just for debug
     """
     variables_functions = [dir(), globals() , locals()]
     for func in variables_functions:
@@ -107,8 +109,8 @@ def print_environment():
 def main():
     logger.info("Start")
     #
-    print_files()
-    print_environment()
+    #print_files()
+    #print_environment()
 
     prepare_job()
 
