@@ -102,6 +102,7 @@ def prepare_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
+            
         vars = " --public " if INPUT_IS_PUBLIC else " "
     else:
         command=f"kaggle datasets metadata {INPUT_ID}"
