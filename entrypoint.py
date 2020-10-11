@@ -67,7 +67,7 @@ def copy_files():
 
 def prepare_job():
     """
-        Prepare temp dir, create metadata if needed, or download it from kaggle
+        Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
 
     commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
