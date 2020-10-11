@@ -22,7 +22,7 @@ inputs:
     required: false
     default: ""
 
-  title:
+  description:
     description: "Description of the dataset, only  if it has to be created."
     required: false
     default: ""
