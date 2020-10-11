@@ -32,7 +32,7 @@ def copy_files():
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
 
     for dataset_file in dataset_file_in_yaml :
-        if not dataset_file : continue 
+        if not dataset_file.replace(" ","") :  : continue 
         logger.debug(f"dataset_file={dataset_file}")
         # We have to explode * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
