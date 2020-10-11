@@ -76,11 +76,16 @@ def prepare_job():
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
+    # Parse variables
     INPUT_ID = os.environ.get('INPUT_ID')
     INPUT_TITLE = os.environ.get('INPUT_TITLE',INPUT_ID.split("/")[1])
+    INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  | os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
+    logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
+    vars = " --public " if INPUT_IS_PUBLIC else " "
+
+    # Check dataset exists
     result = execute(f" kaggle datasets status {INPUT_ID}")
     logger.debug(f"result for {INPUT_ID} is result={result}")
-
     has_to_create_new_dataset = not "ready" in str(result)
     logger.debug(f"has_to_create_new_dataset={has_to_create_new_dataset}")
 
@@ -94,9 +99,6 @@ def prepare_job():
             logger.debug(fin.read())
 
 
-        INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  | os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
-        logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
-        vars = " --public " if INPUT_IS_PUBLIC else " "
 
 
         command=f"kaggle datasets create  {INPUT_ID} {vars}"
