@@ -81,6 +81,7 @@ def prepare_job():
     logger.debug(f"result for {INPUT_ID} is result={result}")
 
     has_to_create_new_dataset = not "ready" in str(result)
+    logger.debug(has_to_create_new_dataset={has_to_create_new_dataset}")
 
     if has_to_create_new_dataset:
         with open('templates/dataset-metadata.j2') as file_:
