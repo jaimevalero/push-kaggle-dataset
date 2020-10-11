@@ -41,7 +41,7 @@ def copy_files():
             if file_not_exists_on_dst :
                 shutil.copy(
                     expanded_dataset_file,
-                    current_work_directory + "/" + os.path.basename(your_path) )
+                    current_work_directory + "/" + os.path.basename(expanded_dataset_file) )
                 logger.info(f"file {expanded_dataset_file}")
 
     logger.success(glob.glob(current_work_directory + "/" +'*'))
