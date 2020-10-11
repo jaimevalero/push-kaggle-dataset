@@ -14,13 +14,24 @@ from shutil import copyfile
 
 def execute(bashCommand):
     logger.debug(f"bashCommand={bashCommand}")
-
+    #
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     logger.debug(f"output={output}")
     logger.debug(f"error={error}")
-
+    #
     return output
+
+def upload_files():
+    # Get message
+    # Get public/private
+    # kaggle datasets version -m "Daily update  $DATE"
+
+    result = execute(f" kaggle datasets status {INPUT_ID}")
+    logger.debug(f"result for {INPUT_ID} is result={result}")
+        #kaggle datasets status jaimevalero/covid19-madrid
+
+    return
 
 def copy_files():
     """
@@ -53,6 +64,7 @@ def prepare_job():
     """
         Prepare temp dir
     """
+
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
@@ -126,6 +138,7 @@ def main():
 
     prepare_job()
     copy_files()
+    upload_files()
 
     logger.info("info")
     return
