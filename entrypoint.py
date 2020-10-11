@@ -95,8 +95,7 @@ def perform_job():
 
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
-        execute(f"""  kaggle datasets version -m '{commit_message}' """)
-
+        execute(f"""  kaggle datasets version -m "{commit_message}" """)
     return
 
 def print_files():
