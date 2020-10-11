@@ -60,7 +60,7 @@ def copy_files():
                 logger.info(f"copy {src} to {dst}")
                 shutil.copy(src,dst)
 
-    logger.success(glob.glob(current_work_directory + "/" +'*'))
+    logger.success("Contents to be uploaded: ", glob.glob(current_work_directory + "/" +'*'))
     return
 
 def prepare_job():
