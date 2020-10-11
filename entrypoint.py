@@ -34,7 +34,7 @@ def copy_files():
     for dataset_file in dataset_file_in_yaml :
         logger.debug(f"dataset_file={dataset_file}")
         # Avoid empty strings
-        if not dataset_file.replace(" ","") :  : continue
+        if not dataset_file.replace(" ","") :   continue
         # We have to explode * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
