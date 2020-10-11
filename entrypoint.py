@@ -32,7 +32,7 @@ def upload_files():
     #kaggle datasets status jaimevalero/covid19-madrid
     stdout=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
     logger.info(f"upload results={stdout}")
-    
+    INPUT_ID = os.environ.get('INPUT_ID')
     #stdout=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
     #logger.info(f"upload results={stdout}")
     return
