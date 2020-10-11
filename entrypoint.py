@@ -90,6 +90,7 @@ def prepare_job():
     has_to_create_new_dataset = not "ready" in str(result)
     logger.debug(f"has_to_create_new_dataset={has_to_create_new_dataset}")
 
+    copy_files()
     if has_to_create_new_dataset:
         # Render template
         with open("/app/templates/dataset-metadata.j2") as file_:
@@ -102,7 +103,7 @@ def prepare_job():
 
         command=f"kaggle datasets create  {vars}"
         result = execute(f"{command}")
-        logger.info(f"result for {command} is result={result}")
+        #logger.info(f"result for {command} is result={result}")
     else:
         command=f"kaggle datasets metadata {INPUT_ID}"
         result = execute(f"{command}")
@@ -150,7 +151,7 @@ def main():
     print_environment()
 
     prepare_job()
-    copy_files()
+    #copy_files()
     upload_files()
 
     logger.info("info")
