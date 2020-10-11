@@ -33,7 +33,8 @@ def upload_files():
     result = execute(f" kaggle datasets status {INPUT_ID}")
     logger.debug(f"result for {INPUT_ID} is result={result}")
         #kaggle datasets status jaimevalero/covid19-madrid
-    commit_message=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
+    stdout=execute(f"""  kaggle datasets version -m "{commit_message}" """).decode("utf-8").replace("\n","")
+    logger.info(f"upload results={stdout}")
     return
 
 def copy_files():
