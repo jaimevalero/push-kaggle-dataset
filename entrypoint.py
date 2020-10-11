@@ -90,8 +90,9 @@ def prepare_job():
         )
         template = env.get_template('templates/dataset-metadata.j2')
 
-        INPUT_ID = os.environ.get('INPUT_ID') | os.environ.get('INPUT_ID') == "True" | os.environ.get('INPUT_ID') == "true"
-        INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC')
+
+        INPUT_ID = os.environ.get('INPUT_ID')
+        INPUT_IS_PUBLIC = os.environ.get('INPUT_IS_PUBLIC',False)  | os.environ.get('INPUT_IS_PUBLIC',False) == "True" | os.environ.get('INPUT_IS_PUBLIC',False) == "true"
         REPO_NAME= os.environ.get('GITHUB_REPOSITORY').split("/")[-1]
         TITLE = os.environ.get('INPUT_TITLE',REPO_NAME)
         logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
