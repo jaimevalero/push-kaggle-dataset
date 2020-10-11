@@ -10,7 +10,7 @@ import tempfile
 import subprocess
 from jinja2 import Template
 from distutils.util import strtobool
-
+import pip
 import glob
 from shutil import copyfile
 import sys
@@ -104,6 +104,7 @@ def perform_job():
 
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
+        pip.main(['install', '--upgrade', 'kaggle'])
         execute(f"""  kaggle datasets version --message "{commit_message}" """)
     return
 
