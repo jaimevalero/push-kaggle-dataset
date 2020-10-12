@@ -29,7 +29,7 @@ def execute(bashCommand):
 
 def get_files_status():
     try :
-        INPUT_ID = os.environ.get('INPUT_ID')
+        INPUT_ID = get_param('INPUT_ID')
         stdout=execute(f"""  kaggle datasets files {INPUT_ID} """).decode("utf-8")
         print(stdout)
     except Exception as e:
@@ -39,12 +39,12 @@ def copy_files():
     """
         Parse user yaml and copy files to temp directory
     """
-    GITHUB_WORKSPACE = os.environ.get('GITHUB_WORKSPACE')
+    GITHUB_WORKSPACE = get_param('GITHUB_WORKSPACE')
     current_work_directory = os.getcwd()
     ignore=ignore_patterns('.git', '.git*')
-    dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES').split("\n")]
+    dataset_file_in_yaml = [ x for x in get_param('INPUT_FILES').split("\n")]
     logger.info(f"dataset_file_in_yaml={dataset_file_in_yaml}")
-    FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
+    FILE_PATH= get_param('GITHUB_WORKSPACE')
 
     for dataset_file in dataset_file_in_yaml :
         logger.debug(f"dataset_file={dataset_file}")
@@ -82,19 +82,18 @@ def perform_job():
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
     #commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
-    commit_message= os.environ.get('GITHUB_SERVER_URL') + "/"+ os.environ.get('GITHUB_REPOSITORY') +"/commit/"  +os.environ.get('GITHUB_SHA')
-    logger.debug(f"commit_message={commit_message}")
+    commit_message= get_param('GITHUB_SERVER_URL') + "/"+ get_param('GITHUB_REPOSITORY') +"/commit/"  +get_param('GITHUB_SHA')
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
     # Parse variables
-    INPUT_ID = os.environ.get('INPUT_ID')
-    INPUT_TITLE       = os.environ.get('INPUT_TITLE',INPUT_ID.split("/")[1])
-    INPUT_SUBTITLE    = os.environ.get('INPUT_SUBTITLE',"")
-    INPUT_DESCRIPTION = os.environ.get('INPUT_DESCRIPTION',"")
+    INPUT_ID = get_param('INPUT_ID')
+    INPUT_TITLE       = get_param('INPUT_TITLE',INPUT_ID.split("/")[1])
+    INPUT_SUBTITLE    = get_param('INPUT_SUBTITLE',"")
+    INPUT_DESCRIPTION = get_param('INPUT_DESCRIPTION',"")
 
-    INPUT_IS_PUBLIC =bool( strtobool(str( os.environ.get('INPUT_IS_PUBLIC',False))))
-    logger.debug(f"INPUT_ID={INPUT_ID}, INPUT_TITLE={INPUT_TITLE}")
+    INPUT_IS_PUBLIC =bool( strtobool(str(get_param('INPUT_IS_PUBLIC',False))))
+    logger.debug(f"INPUT_IS_PUBLIC={INPUT_IS_PUBLIC}")
     vars = " --public " if INPUT_IS_PUBLIC else " "
 
     # Check dataset exists
@@ -153,11 +152,31 @@ def print_environment():
         logger.debug(f"key {key} : {valor}")
     return
 
-#def get_param(param_name:)
-    #if INPUT_ID
+def get_param(param_name,default_value=""):
+    if param_name == "INPUT_ID":
+        if os.environ.get('INPUT_ID')=="{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}" :
+            # Default value for dataset is <kaggle username>/<github repo name>
+            result = os.environ.get('KAGGLE_USERNAME')+"/"+ os.environ.get('RUNNER_WORKSPACE').split("/")[-1]
+        else :
+            result = os.environ.get('INPUT_ID')
+    elif param_name in [
+		"GITHUB_REPOSITORY",
+		"GITHUB_SERVER_URL",
+		"GITHUB_SHA",
+        "GITHUB_WORKSPACE" ,
+		"INPUT_DESCRIPTION",
+		"INPUT_FILES",
+		"INPUT_IS_PUBLIC",
+		"INPUT_SUBTITLE",
+        "INPUT_TITLE" ] :
+		result = os.environ.get(param_name,default_value)
+	else :
+		raise Exception(f"Value {param_name} not exists")
+    logger_debug(f"{param_name}={result}")
+    return result
 
 def send_output_param():
-    INPUT_ID = os.environ.get('INPUT_ID')
+    INPUT_ID = get_param('INPUT_ID')
     logger.info(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
     print(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
     return

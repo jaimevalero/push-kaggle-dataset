@@ -6,7 +6,7 @@ inputs:
   id:
     description: "Dataset identifier in format {username}/{dataset})."
     required: false
-    default: "{KAGGLE_USER}/{GITHUB_REPO_NAME}"
+    default: "{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}"
 
   files:
     description: "Files to upload."
