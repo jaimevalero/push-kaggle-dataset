@@ -18,12 +18,12 @@ inputs:
     default: "dataset id"
 
   subtitle:
-    description: "Subtitle of the dataset, ,must be between 20 and 80 characters"
+    description: "Subtitle of the dataset. Must be between 20 and 80 characters"
     required: false
     default: ""
 
   description:
-    description: "Description of the dataset, only  if it has to be created."
+    description: "Description of the dataset, only if it has to be created."
     required: false
     default: ""
 
@@ -32,10 +32,7 @@ inputs:
     required: false
     default: false
 
-  version_notes:
-    description: 'Message describing the new version'
-    required: false
-    default: commit message
+
 
 outputs:
   time: # id of output
