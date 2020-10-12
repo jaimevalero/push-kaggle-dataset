@@ -96,7 +96,7 @@ jobs:
 
           title: "Testing github actions for upload datasets"
 
-          subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
+          subtitle: "Titanic data"
 
           description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
           files:  titanic.csv
