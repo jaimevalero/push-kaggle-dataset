@@ -2,14 +2,12 @@
 
 This action push data from a github repository to a dataset at [kaggle.](https://kaggle.com)   
 
-
 Use this action to keep synchronized your datasets at kaggle with your repositories.
 
+Please bear in mind that this action do NOT work with kernels nor notebooks, so it is of not use on competitions.
+
+
 ## Inputs
-
-### `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
 
 ### `id`
 
@@ -32,7 +30,7 @@ Default is the dataset id.
 
 Subtitle of the dataset. We highly recommend entering a subtitle for your Dataset.
 Only if it is a new dataset. Otherwise it is not used.
-Must be between 20 and 80 characters.
+Must be between 20 and 80 characters. If the subtitle has fewer than 20 characters, trailing white spaces are added.
 
 ### `description`
 
@@ -53,12 +51,16 @@ You have to configure your secrets at Settings >> Secrets
 - ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here.](https://www.kaggle.com/account)   
 
 ## Examples usage
+Create a main.yml file like this in the path your repo, in the path .github/workflows/main.yml.
 
+Change the fields in that yaml : id, files, title, subtitle and description.
+Add the secrets.
+
+Please consider that if you are NOT creating a new dataset, only updating it, title, subtitle, description and is_public are not used.
 
 ## Example
 
-Deploy an application in the root directory to `production`:
-
+### Example1 : Create a new dataset, uploading a file, "titanic.csv"
 ```yaml
 
 name: upload
@@ -84,7 +86,7 @@ jobs:
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
       - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@develop # This is the action
+        uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
@@ -92,19 +94,17 @@ jobs:
 
         with:
           id:  "jaimevalero/my-new-dataset"
-          is_public: false
-
           title: "Testing github actions for upload datasets"
-
-          subtitle: "Titanic data"
-
-          description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
-
+          subtitle: "Titanic data2"
+          description: "## Example of dataset syncronized by github actions <br/>Source https://github.com/jaimevalero/test-actions and https://github.com/jaimevalero/push-kaggle-dataset <br/> "
           files:  titanic.csv
-
+          is_public: true
 
 ```
 
+### Example2 : Add mora than one file
+
+You can use wildcards (eg: *.xlsx ) or directory names (eg: *.xlsx )
 ```yaml
 
 name: upload
