@@ -50,7 +50,52 @@ Only if it is a new dataset. Otherwise it is not used.
 - ` ${{ secrets.KAGGLE_USERNAME }}` - **Required** The dataset owner.
 - ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here.](https://www.kaggle.com/account)   
 
-## Example usage
+## Examples usage
+
+
+## Example
+
+Deploy an application in the root directory to `production`:
+
+```yaml
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.15
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: go build -v .
+
+      - name: Test
+        run: go test -v .
+
+      - name: Deploy
+        uses: apex/actions/up@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          UP_CONFIG: ${{ secrets.UP_CONFIG }}
+        with:
+          stage: production
+
+```
+
+
 
 uses: actions/hello-world-docker-action@v1
 with:
