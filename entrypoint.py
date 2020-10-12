@@ -34,7 +34,7 @@ def get_files_status():
         print(stdout)
     except Exception as e:
         pass
-        
+
 def copy_files():
     """
         Parse user yaml and copy files to temp directory
@@ -158,7 +158,7 @@ def main():
     logger.info("Start")
     print_environment()
     perform_job()
-    #get_files_status()
+    get_files_status()
     logger.info("End")
 
     return
