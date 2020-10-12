@@ -120,7 +120,7 @@ def perform_job():
             logger.debug(fin.read())
         result = execute(f"kaggle datasets create --dir-mode tar {vars}").decode("utf-8")
         logger.info(f"Dataset creation result: {exception}")
-        if "Subtitle length must be between 20 and 80 characters" in result :
+        if "Subtitle length" in result :
             logger.exception(f"Error. Dataset not created. {result}")
             raise Exception(f"Error. Dataset not created. {result}")
     else:
