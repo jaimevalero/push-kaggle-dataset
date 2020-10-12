@@ -12,7 +12,8 @@ Please bear in mind that this action do NOT work with kernels nor notebooks, so 
 ### `id`
 
 Dataset identifier in format {username}/{dataset}). Default is `"{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}"`
-Where KAGGLE_USERNAME is the secret - see sections #Secret
+Where KAGGLE_USERNAME is a secret - see sections [secret](#Secret)
+You cannot upload data to other kaggle user.
 
 ### `files`
 
