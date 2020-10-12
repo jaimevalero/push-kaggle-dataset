@@ -105,12 +105,16 @@ jobs:
 
 ### Example2 : Add more than one file
 
-You can use wildcards (eg: *.xlsx ) or directory names (eg: images ).
+You can use
+ - wildcards (eg: *.xlsx ) 
+ - directory names (eg: images )
+
 Please bear in mind that files in subdirectories are packaged in tar file.
 
 In case you use more than one line, you should use the "|" operator.
 
 ```yaml
+
 
           files: |
             titanic.csv
