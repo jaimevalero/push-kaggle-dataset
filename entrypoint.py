@@ -171,8 +171,8 @@ def get_param(param_name,default_value=""):
         "INPUT_TITLE" ] :
         result = os.environ.get(param_name,default_value)
     else :
-		raise Exception(f"Value {param_name} not exists")
-    logger_debug(f"{param_name}={result}")
+        raise Exception(f"Value {param_name} not exists")
+        logger_debug(f"{param_name}={result}")
     return result
 
 def send_output_param():
