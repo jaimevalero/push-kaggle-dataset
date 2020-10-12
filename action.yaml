@@ -5,31 +5,33 @@ inputs:
 
   id:
     description: "Dataset identifier in format {username}/{dataset})."
-    required: true
+    required: false
+    default: "{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}"
 
   files:
     description: "Files to upload."
-    required: true
+    required: false
     default: "*.csv"
 
   title:
-    description: "Title of the dataset, if it has to be created."
+    description: "Title of the dataset, only if it has to be created."
     required: false
-    default: "New dataset"
+    default: "dataset id"
+
+  subtitle:
+    description: "Subtitle of the dataset. Must be between 20 and 80 characters"
+    required: false
+    default: ""
+
+  description:
+    description: "Description of the dataset, only if it has to be created."
+    required: false
+    default: ""
 
   is_public:
     description: "Create publicly (default is private)."
     required: false
-    default: false
-
-  version_notes:
-    description: 'Message describing the new version'
-    required: false
-    default: commit message
-
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: False
 
 runs:
   using: 'docker'
