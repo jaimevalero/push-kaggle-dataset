@@ -12,6 +12,7 @@ Please bear in mind that this action do NOT work with kernels nor notebooks, so 
 ### `id`
 
 Dataset identifier in format {username}/{dataset}). Default is `"{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}"`
+Where KAGGLE_USERNAME is the secret - see sections #Secret
 
 ### `files`
 
@@ -106,7 +107,7 @@ jobs:
 ### Example2 : Add more than one file
 
 You can use
- - wildcards (eg: *.xlsx ) 
+ - wildcards (eg: *.xlsx )
  - directory names (eg: images )
 
 Please bear in mind that files in subdirectories are packaged in tar file.
