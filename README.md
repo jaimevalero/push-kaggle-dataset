@@ -12,8 +12,12 @@ Use this action to keep synchronized your datasets at kaggle.com with your repos
 
 ### `id`
 
-**Required** Dataset identifier in format {username}/{dataset}).`
+Dataset identifier in format {username}/{dataset}). Default is `"{KAGGLE_USERNAME}/{GITHUB_REPO_NAME}"
 
+### `id`
+
+Files to upload.
+Default is `*.csv
 
 ## Secrets
 
