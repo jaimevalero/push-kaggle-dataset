@@ -23,8 +23,9 @@ Files to upload. Default is `"*.csv"`
 Title of the dataset.
 
 Only if it is a new dataset. Otherwise it is not used.
+Default is the dataset id.
 
-Default is `"*.csv"`
+*Eg: if the dataset is mlg-ulb/creditcardfraud, the default title would be /creditcardfraud*
 
 ### `subtitle`
 
