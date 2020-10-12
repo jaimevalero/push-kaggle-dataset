@@ -50,7 +50,7 @@ def copy_files():
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
             if ".git" in expanded_dataset_file : continue
-            try : 
+            try :
                 src = expanded_dataset_file
                 dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
                 logger.info(f"copy {src} to {dst}")
@@ -142,7 +142,7 @@ def print_environment():
     # Print environment varriables
     for key in os.environ.keys():
         valor=os.environ[key]
-        logger.debug(f"llave {key} : {valor}")
+        logger.debug(f"key {key} : {valor}")
     return
 
 @logger.catch(onerror=lambda _: sys.exit(1))
