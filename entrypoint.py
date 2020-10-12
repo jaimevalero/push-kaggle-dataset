@@ -119,7 +119,8 @@ def perform_job():
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
         result = execute(f"kaggle datasets create --dir-mode tar {vars}")
-
+        if b"Subtitle length must be between 20 and 80 characters" in result :
+        raise Exception(f"Error. Dataset not created. {result}") 
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
         pip.main(['install', '--upgrade', 'kaggle'])
