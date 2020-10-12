@@ -31,7 +31,7 @@ inputs:
   is_public:
     description: "Create publicly (default is private)."
     required: false
-    default: false
+    default: False
 
 
 outputs:
