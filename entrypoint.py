@@ -118,7 +118,7 @@ def perform_job():
         pip.main(['install', '--upgrade', 'kaggle'])
         # pparently whitespaces are not allowed
         commit_message = commit_message.replace(" ","_")
-        execute(f"""  kaggle datasets version --message "{commit_message}" """)
+        execute(f"""  kaggle datasets version --dir-mode tar --message "{commit_message}" """)
     return
 
 def print_files(path="/"):
