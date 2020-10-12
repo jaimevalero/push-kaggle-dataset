@@ -1,6 +1,8 @@
-# Hello world docker action
+# Push Kaggle Dataset action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action push data from a github repository to a dataset at kaggle.
+
+Use this action to keep synchronized your datasets at kaggle.com with your repositories.
 
 ## Inputs
 
