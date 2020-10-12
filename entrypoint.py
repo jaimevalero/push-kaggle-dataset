@@ -153,8 +153,8 @@ def print_environment():
         logger.debug(f"key {key} : {valor}")
     return
 
-def get_param(param_name:)
-    if INPUT_ID
+#def get_param(param_name:)
+    #if INPUT_ID
 
 def send_output_param():
     INPUT_ID = os.environ.get('INPUT_ID')
