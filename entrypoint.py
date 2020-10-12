@@ -12,7 +12,7 @@ from jinja2 import Template
 from distutils.util import strtobool
 import pip
 import glob
-from shutil import copyfile, copytree, ignore_patterns
+from shutil import copyfile,  ignore_patterns
 import sys
 
 commit_message=""
