@@ -38,8 +38,8 @@ inputs:
     default: commit message
 
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  url: # id of output
+    description: 'URL of the dataset'
 
 runs:
   using: 'docker'
