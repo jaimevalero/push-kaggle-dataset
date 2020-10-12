@@ -90,6 +90,8 @@ def perform_job():
     INPUT_ID = get_param('INPUT_ID')
     INPUT_TITLE       = get_param('INPUT_TITLE',INPUT_ID.split("/")[1])
     INPUT_SUBTITLE    = get_param('INPUT_SUBTITLE',"")
+    if len(INPUT_SUBTITLE) < 21:
+	       INPUT_SUBTITLE += 'x'*(21-len(INPUT_SUBTITLE))
     INPUT_DESCRIPTION = get_param('INPUT_DESCRIPTION',"")
 
     INPUT_IS_PUBLIC =bool( strtobool(str(get_param('INPUT_IS_PUBLIC',False))))
