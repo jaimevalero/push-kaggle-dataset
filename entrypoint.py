@@ -119,7 +119,7 @@ def perform_job():
             fh.write(outputText)
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
-        result = execute(f"kaggle datasets create  {vars}")
+        result = execute(f"kaggle datasets create --dir-mode tar {vars}")
 
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
