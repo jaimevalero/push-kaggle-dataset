@@ -1,6 +1,7 @@
 # Push Kaggle Dataset action
 
-This action push data from a github repository to a dataset at kaggle.
+This action push data from a github repository to a dataset at [kaggle](https://kaggle.com)   
+.
 
 Use this action to keep synchronized your datasets at kaggle.com with your repositories.
 
