@@ -36,6 +36,7 @@ def copy_files():
     """
         Parse user yaml and copy files to temp directory
     """
+    GITHUB_WORKSPACE = os.environ.get('GITHUB_WORKSPACE')
     current_work_directory = os.getcwd()
     ignore=ignore_patterns('.git', '.git*')
     dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES').split("\n")]
@@ -53,17 +54,18 @@ def copy_files():
             if ".git" in expanded_dataset_file : continue
             try :
                 src = expanded_dataset_file
-                dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
+                #dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
+                dst = current_work_directory + expanded_dataset_file).rstrip('/').replace(GITHUB_WORKSPACE,"")
                 logger.info(f"copy {src} to {dst}")
                 is_directory = os.path.isdir(src)
                 if is_directory :
                     shutil.copytree(src,dst,ignore=ignore)
                 else:
                     # If file already is there, we do not copy it
-                    file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
-                    if file_not_exists_on_dst :
-                        os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
-                        shutil.copy(src,dst)
+                    #file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
+                    #if file_not_exists_on_dst :
+                    os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
+                    shutil.copy(src,dst)
             except Exception as e:
             	logger.warning(f"Could not copy {src} to {dst}: {e}")
 
