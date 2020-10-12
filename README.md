@@ -52,7 +52,7 @@ You have to configure your secrets at: Settings >> Secrets
 
 ## Examples usage
 
-Create a main.yml file like this in the path your repo, in the path .github/workflows/main.yml.
+Create a main.yml file like this in the path your repo, in the path `.github/workflows/main.yml`
 
 Change the fields in that yaml : id, files, title, subtitle and description.
 Add the secrets.
