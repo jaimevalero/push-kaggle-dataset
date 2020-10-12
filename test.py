@@ -4,7 +4,7 @@ import sys
 from distutils.util import strtobool
 
 
-
+# Testing strtobool
 values = ('True','False',"true","false",True,False)
 
 for j,value in enumerate(values):
