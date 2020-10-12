@@ -46,10 +46,10 @@ def copy_files():
         logger.debug(f"dataset_file={dataset_file}")
         # Avoid empty strings
         if not dataset_file.replace(" ","") :   continue
+        if "#"    in expanded_dataset_file : continue
         # We have to expand * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
-            if "#"    in expanded_dataset_file : continue
             if ".git" in expanded_dataset_file : continue
             try :
                 src = expanded_dataset_file
