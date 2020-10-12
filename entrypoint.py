@@ -153,12 +153,17 @@ def print_environment():
         logger.debug(f"key {key} : {valor}")
     return
 
+def print_environment():
+    INPUT_ID = os.environ.get('INPUT_ID')
+    print(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
+
 @logger.catch(onerror=lambda _: sys.exit(1))
 def main():
     logger.info("Start")
     print_environment()
     perform_job()
-    get_files_status()
+    #get_files_status()
+    send_output_param()
     logger.info("End")
 
     return
