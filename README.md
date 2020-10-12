@@ -115,16 +115,14 @@ You can use
  - wildcards (eg: *.xlsx )
  - directory names (eg: images )
 
-Please bear in mind that files in subdirectories are packaged in tar file.
+If you use directory names, you will upload every file from that directory.
+Please bear in mind that files in subdirectories are packaged in tar file, due to API behaviour.
 
 In case you use more than one line, you should use the "|" operator.
 
 ```yaml
-
-
           files: |
             titanic.csv
             *.xlsx
             images
-
 ```
