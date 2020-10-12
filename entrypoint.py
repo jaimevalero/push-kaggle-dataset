@@ -155,7 +155,7 @@ def print_environment():
 
 def send_output_param():
     INPUT_ID = os.environ.get('INPUT_ID')
-    logger.success(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
+    logger.info(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
     print(f"::set-output name=url::https://kaggle.com/{INPUT_ID}")
     return
 
