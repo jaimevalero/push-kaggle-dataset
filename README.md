@@ -105,7 +105,9 @@ jobs:
 
 ### Example2 : Add more than one file
 
-You can use wildcards (eg: *.xlsx ) or directory names (eg: *.xlsx )
+You can use wildcards (eg: *.xlsx ) or directory names (eg: images ).
+Please bear in mind that files in subdirectories are packaged in tar file.
+
 ```yaml
 
           files: |
