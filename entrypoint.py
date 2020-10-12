@@ -169,7 +169,7 @@ def get_param(param_name,default_value=""):
 		"INPUT_IS_PUBLIC",
 		"INPUT_SUBTITLE",
         "INPUT_TITLE" ] :
-		result = os.environ.get(param_name,default_value)
+        result = os.environ.get(param_name,default_value)
 	else :
 		raise Exception(f"Value {param_name} not exists")
     logger_debug(f"{param_name}={result}")
