@@ -15,11 +15,10 @@ Use this action to keep synchronized your datasets at kaggle.com with your repos
 **Required** Dataset identifier in format {username}/{dataset}).`
 
 
-## Outputs
+## Secrets
 
-### `time`
-
-The time we greeted you.
+- ` ${{ secrets.KAGGLE_USERNAME }}` - *Required* The dataset owner.
+- ` ${{ secrets.KAGGLE_KEY }}` - *Required* The API key for your user. You can [create your api key here](https://www.kaggle.com/account)   
 
 ## Example usage
 
