@@ -103,56 +103,11 @@ jobs:
 
 ```
 
-### Example2 : Add mora than one file
+### Example2 : Add more than one file
 
 You can use wildcards (eg: *.xlsx ) or directory names (eg: *.xlsx )
 ```yaml
 
-name: upload
-jobs:
-  # This workflow contains a single job called "build"
-  upload:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    jobs:
-      # This workflow contains a single job called "build"
-      upload:
-        # The type of runner that the job will run on
-        runs-on: ubuntu-latest
-
-        # Steps represent a sequence of tasks that will be executed as part of the job
-        steps:
-          # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-          - uses: actions/checkout@v2
-          - name: Upload datasets
-            uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
-            env:
-              # Do not leak your credentials.
-              KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-              KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-            with:
-              # Data of the dataset to be created.
-              id:  "jaimevalero/test202010111235"
-              title: "Testing github actions for upload datasets"
-              subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
-              description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
-              files: titanic.csv
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
-        env:
-          # Do not leak your credentials.
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-        with:
-          id:  "jaimevalero/test202010111235"
-          title: "Testing github actions for upload datasets"
-          subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
-          description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
           files: |
             titanic.csv
             *.xlsx
