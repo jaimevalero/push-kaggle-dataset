@@ -62,6 +62,7 @@ def copy_files():
                     # If file already is there, we do not copy it
                     file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
                     if file_not_exists_on_dst :
+                        os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
                         shutil.copy(src,dst)
             except Exception as e:
             	logger.warning(f"Could not copy {src} to {dst}: {e}")
