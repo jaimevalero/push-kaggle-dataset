@@ -23,8 +23,8 @@ Files to upload. Default is `"*.csv"`
 
 ## Secrets
 
-- ` ${{ secrets.KAGGLE_USERNAME }}` - *Required* The dataset owner.
-- ` ${{ secrets.KAGGLE_KEY }}` - *Required* The API key for your user. You can [create your api key here](https://www.kaggle.com/account)   
+- ` ${{ secrets.KAGGLE_USERNAME }}` - **Required** The dataset owner.
+- ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here](https://www.kaggle.com/account)   
 
 ## Example usage
 
