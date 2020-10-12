@@ -109,9 +109,9 @@ jobs:
 
 ```
 
-### Example2 : Adding more than one file
+### Example2 : Upload more than one file
 
-You can use
+You can use:
  - wildcards (eg: *.xlsx )
  - directory names (eg: images )
 
