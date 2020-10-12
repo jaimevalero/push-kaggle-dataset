@@ -18,13 +18,26 @@ Dataset identifier in format {username}/{dataset}). Default is `"{KAGGLE_USERNAM
 
 Files to upload. Default is `"*.csv"`
 
+### `title`
 
+Files to upload. Default is `"*.csv"`
 
+### `subtitle`
+
+Files to upload. Default is `"*.csv"`
+
+### `description`
+
+Files to upload. Default is `"*.csv"`
+
+### `is_public`
+
+Files to upload. Default is `"*.csv"`
 
 ## Secrets
 
 - ` ${{ secrets.KAGGLE_USERNAME }}` - **Required** The dataset owner.
-- ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here](https://www.kaggle.com/account)   
+- ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here.](https://www.kaggle.com/account)   
 
 ## Example usage
 
