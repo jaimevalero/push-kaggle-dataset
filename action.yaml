@@ -44,4 +44,4 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'jaimevalero78/push-kaggle-dataset'
+  image: 'docker://jaimevalero78/push-kaggle-dataset:latest'
