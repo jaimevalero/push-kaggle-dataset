@@ -32,7 +32,10 @@ inputs:
     required: false
     default: false
 
-
+  version_notes:
+    description: 'Message describing the new version'
+    required: false
+    default: commit message
 
 outputs:
   time: # id of output
