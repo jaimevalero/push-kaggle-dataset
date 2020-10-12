@@ -28,10 +28,13 @@ def execute(bashCommand):
     return output
 
 def get_files_status():
-    INPUT_ID = os.environ.get('INPUT_ID')
-    stdout=execute(f"""  kaggle datasets files {INPUT_ID} """).decode("utf-8")
-    print(stdout)
-
+    try :
+        INPUT_ID = os.environ.get('INPUT_ID')
+        stdout=execute(f"""  kaggle datasets files {INPUT_ID} """).decode("utf-8")
+        print(stdout)
+    except Exception as e:
+        pass
+        
 def copy_files():
     """
         Parse user yaml and copy files to temp directory
