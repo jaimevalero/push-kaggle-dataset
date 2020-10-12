@@ -51,6 +51,7 @@ You have to configure your secrets at: Settings >> Secrets
 - ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here.](https://www.kaggle.com/account)   
 
 ## Examples usage
+
 Create a main.yml file like this in the path your repo, in the path .github/workflows/main.yml.
 
 Change the fields in that yaml : id, files, title, subtitle and description.
