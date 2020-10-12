@@ -30,7 +30,7 @@ def execute(bashCommand):
 def get_files_status():
     INPUT_ID = os.environ.get('INPUT_ID')
     stdout=execute(f"""  kaggle datasets files {INPUT_ID} """).decode("utf-8")
-
+    print(stdout)
 
 def copy_files():
     """
