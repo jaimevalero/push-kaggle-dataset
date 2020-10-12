@@ -12,7 +12,7 @@ from jinja2 import Template
 from distutils.util import strtobool
 import pip
 import glob
-from shutil import copyfile
+from shutil import copyfile, copytree, ignore_patterns
 import sys
 
 commit_message=""
@@ -37,6 +37,7 @@ def copy_files():
         Parse user yaml and copy files to temp directory
     """
     current_work_directory = os.getcwd()
+    ignore=ignore_patterns('.git', '.git*')
     dataset_file_in_yaml = [ x for x in os.environ.get('INPUT_FILES').split("\n")]
     logger.info(f"dataset_file_in_yaml={dataset_file_in_yaml}")
     FILE_PATH= os.environ.get('GITHUB_WORKSPACE')
@@ -45,18 +46,28 @@ def copy_files():
         logger.debug(f"dataset_file={dataset_file}")
         # Avoid empty strings
         if not dataset_file.replace(" ","") :   continue
-        # We have to explode * expressions
+        # We have to expand * expressions
         expanded_dataset_files = glob.glob(f"{FILE_PATH}/{dataset_file}")
         for expanded_dataset_file in expanded_dataset_files  :
-            # If file already is there, we do not copy it
-            file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
-            if file_not_exists_on_dst :
+            if ".git" in expanded_dataset_file : continue
+            try : 
                 src = expanded_dataset_file
-                dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file)
+                dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
                 logger.info(f"copy {src} to {dst}")
-                shutil.copy(src,dst)
+                is_directory = os.path.isdir(src)
+                if is_directory :
+                    shutil.copytree(src,dst,ignore=ignore)
+                else:
+                    # If file already is there, we do not copy it
+                    file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
+                    if file_not_exists_on_dst :
+                        shutil.copy(src,dst)
+            except Exception as e:
+            	logger.warning(f"Could not copy {src} to {dst}: {e}")
+
 
     logger.success("Contents to be uploaded: " , glob.glob(current_work_directory + "/" +'*'))
+    print_files(path=".")
     return
 
 def perform_job():
@@ -110,15 +121,14 @@ def perform_job():
         execute(f"""  kaggle datasets version --message "{commit_message}" """)
     return
 
-def print_files():
+def print_files(path="/"):
     """
         Helper function to know where are my files.
         Just for debug
     """
-
-    for dirname, _, filenames in os.walk('/'):
+    for dirname, _, filenames in os.walk(path):
         for filename in filenames:
-            print(os.path.join(dirname, filename))
+            logger.info(os.path.join(dirname, filename))
     return
 
 def print_environment():
