@@ -75,7 +75,7 @@ def perform_job():
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
     #commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
-    commit_message== os.environ.get('GITHUB_SERVER_URL') + "/"+ os.environ.get('GITHUB_REPOSITORY') +"/commit/"  +os.environ.get('GITHUB_SHA')
+    commit_message= os.environ.get('GITHUB_SERVER_URL') + "/"+ os.environ.get('GITHUB_REPOSITORY') +"/commit/"  +os.environ.get('GITHUB_SHA')
     logger.debug(f"commit_message={commit_message}")
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
