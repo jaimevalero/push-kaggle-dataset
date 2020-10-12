@@ -33,11 +33,6 @@ inputs:
     required: false
     default: False
 
-
-outputs:
-  url: # id of output
-    description: 'URL of the dataset'
-
 runs:
   using: 'docker'
   image: 'Dockerfile'

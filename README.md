@@ -25,19 +25,24 @@ Title of the dataset.
 Only if it is a new dataset. Otherwise it is not used.
 Default is the dataset id.
 
-*Eg: if the dataset is mlg-ulb/creditcardfraud, the default title would be /creditcardfraud*
+*Eg: if the dataset is mlg-ulb/creditcardfraud, the default title would be 'creditcardfraud'*
 
 ### `subtitle`
 
-Files to upload. Default is `"*.csv"`
+Subtitle of the dataset.
+Only if it is a new dataset. Otherwise it is not used.
+Must be between 20 and 80 characters.
 
 ### `description`
 
-Files to upload. Default is `"*.csv"`
+Description of the dataset, only if it has to be created.
+Only if it is a new dataset. Otherwise it is not used.
 
 ### `is_public`
 
-Files to upload. Default is `"*.csv"`
+Visibility of the the new dataset. Boolean (True or False)
+Default is `"*.False"`- private datasets are created by default.
+Only if it is a new dataset. Otherwise it is not used.
 
 ## Secrets
 
