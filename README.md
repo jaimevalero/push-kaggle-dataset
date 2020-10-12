@@ -59,7 +59,11 @@ Create a main.yml file like this in the path your repo, in the path `.github/wor
 Change the fields in that yaml : id, files, title, subtitle and description.
 Add the secrets.
 
-Please consider that if you are NOT creating a new dataset, only updating it, title, subtitle, description and is_public are not used.
+Please consider that if you are NOT creating a new dataset, only updating it, the following fields are not used : 
+ - title
+ - subtitle
+ - description
+ - is_public
 
 ## Example
 
