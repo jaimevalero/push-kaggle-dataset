@@ -123,7 +123,7 @@ def perform_job():
         result = execute(f"kaggle datasets create --dir-mode tar {vars}").decode("utf-8")
         logger.info(f"Dataset creation result: {exception}")
         if "Subtitle length" in result :
-            logger.exception(f"Error. Dataset not created. {result}")
+            logger.critical(f"Error. Dataset not created. {result}")
             raise Exception(f"Error. Dataset not created. {result}")
     else:
         execute(f"""  kaggle datasets metadata {INPUT_ID}""")
