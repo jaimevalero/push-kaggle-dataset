@@ -55,7 +55,7 @@ def copy_files():
             try :
                 src = expanded_dataset_file
                 #dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
-                dst = current_work_directory + expanded_dataset_file.rstrip('/').replace(GITHUB_WORKSPACE,"")
+                dst = current_work_directory + expanded_dataset_file.replace(GITHUB_WORKSPACE,"").rstrip('/')
                 logger.info(f"copy {src} to {dst}")
                 is_directory = os.path.isdir(src)
                 if is_directory :
