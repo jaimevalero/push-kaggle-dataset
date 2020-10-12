@@ -108,7 +108,7 @@ jobs:
 You can use wildcards (eg: *.xlsx ) or directory names (eg: images ).
 Please bear in mind that files in subdirectories are packaged in tar file.
 
-In case you use more than one line, you should use the "|" operator
+In case you use more than one line, you should use the "|" operator.
 
 ```yaml
 
@@ -117,85 +117,4 @@ In case you use more than one line, you should use the "|" operator
             *.xlsx
             images
 
-
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  upload:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      # Runs a single command using the runners shell
-      - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
-        env:
-          # Do not leak your credentials.
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-        with:
-          is_public: false
-          title: "Testing github actions for upload datasets"
-          subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
-          description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
-          files: |
-            titanic.csv
-            *.xlsx
-            images
-
-
 ```
-
-
-
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
-
-
-
-  id:
-    description: "Dataset identifier in format {username}/{dataset})."
-    required: true
-
-  files:
-    description: "Files to upload."
-    required: true
-    default: "*.csv"
-
-  title:
-    description: "Title of the dataset, only if it has to be created."
-    required: false
-    default: "dataset id"
-
-  subtitle:
-    description: "Subtitle of the dataset. Must be between 20 and 80 characters"
-    required: false
-    default: ""
-
-  description:
-    description: "Description of the dataset, only if it has to be created."
-    required: false
-    default: ""
-
-  is_public:
-    description: "Create publicly (default is private)."
-    required: false
-    default: false
-
-  version_notes:
-    description: 'Message describing the new version'
-    required: false
-    default: commit message
