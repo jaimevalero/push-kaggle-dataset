@@ -61,8 +61,6 @@ Deploy an application in the root directory to `production`:
 
 ```yaml
 
-# This is a basic workflow to help you get started with Actions
-
 name: upload
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -70,6 +68,40 @@ name: upload
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  upload:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Runs a single command using the runners shell
+      - name: Upload datasets
+        uses: jaimevalero/push-kaggle-dataset@develop # This is the action
+        env:
+          # Do not leak your credentials.
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
+        with:
+          id:  "jaimevalero/my-new-dataset"
+          is_public: false
+
+          title: "Testing github actions for upload datasets"
+
+          subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
+
+          description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
+          files:  titanic.csv
+
+
 
 ```
 
