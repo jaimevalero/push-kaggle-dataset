@@ -30,7 +30,7 @@ Default is the dataset id.
 
 ### `subtitle`
 
-Subtitle of the dataset.
+Subtitle of the dataset. We highly recommend entering a subtitle for your Dataset.
 Only if it is a new dataset. Otherwise it is not used.
 Must be between 20 and 80 characters.
 
@@ -58,40 +58,50 @@ Only if it is a new dataset. Otherwise it is not used.
 Deploy an application in the root directory to `production`:
 
 ```yaml
-name: Deploy
 
+```
+
+```yaml
+# This is a basic workflow to help you get started with Actions
+
+name: upload
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    name: Build
+  # This workflow contains a single job called "build"
+  upload:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Set up Go 1.x
-        uses: actions/setup-go@v2
-        with:
-          go-version: ^1.15
-        id: go
-
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
-
-      - name: Build
-        run: go build -v .
-
-      - name: Test
-        run: go test -v .
-
-      - name: Deploy
-        uses: apex/actions/up@v0.5.1
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Runs a single command using the runners shell
+      - name: Upload datasets
+        uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          UP_CONFIG: ${{ secrets.UP_CONFIG }}
+          # Do not leak your credentials.
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         with:
-          stage: production
+          is_public: false
+          title: "Testing github actions for upload datasets"
+          subtitle: "We highly recommend entering a subtitle for your Dataset (20-80 characters)."
+          description: "## Description in MD syntax <br/>Source https://github.com/jaimevalero/test-actions "
+          files: |
+            titanic.csv
+            *.xlsx
+            images
+
 
 ```
 
