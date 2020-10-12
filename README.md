@@ -45,7 +45,7 @@ Only if it is a new dataset. Otherwise it is not used.
 
 ## Secrets
 
-You have to configure your secrets at Settings >> Secrets
+You have to configure your secrets at: Settings >> Secrets
 
 - ` ${{ secrets.KAGGLE_USERNAME }}` - **Required** The dataset owner.
 - ` ${{ secrets.KAGGLE_KEY }}` - **Required** The API key for your user. You can [create your api key here.](https://www.kaggle.com/account)   
