@@ -1,0 +1,22 @@
+name: upload
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  upload:
+    # Only triggers if string  madrid_results.csv is found on the commit message
+    if: "contains(github.event.commits[0].message, 'madrid_results.csv')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upload datasets
+        uses: jaimevalero/push-kaggle-dataset@v1
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        with:
+          id:  "jaimevalero/covid19-madrid"
+          files:  madrid_results.csv

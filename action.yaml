@@ -1,6 +1,10 @@
 # action.yml
 name: 'Push kaggle dataset'
 description: 'Upload dataset from github repository to kaggle'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
 inputs:
 
   id:
