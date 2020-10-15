@@ -126,3 +126,15 @@ In case you use more than one line, you should use the "|" operator.
             *.xlsx
             images
 ```
+
+### Hint: Skip workflow based on commit message
+
+You can configure your workflow itself.
+En this example, the workflow only triggers when a string is found in the commit message
+
+```yaml
+  upload:
+   if: "contains(github.event.commits[0].message, 'madrid_results.csv')"
+```
+
+Complete yaml for these examples could be find at examples directory
