@@ -1,5 +1,5 @@
 kaggle==1.5.4
-loguru==0.5.3
+loguru
 PyYAML==5.1
 Jinja2==2.10
 glob2==0.6
