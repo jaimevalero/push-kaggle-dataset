@@ -3,7 +3,7 @@ charset-normalizer==2.0.12
 glob2==0.7
 idna==3.3
 Jinja2==3.0.3
-kaggle==1.5.12
+kaggle==1.5.16
 loguru==0.6.0
 MarkupSafe==2.1.0
 python-dateutil==2.8.2
