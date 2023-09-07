@@ -121,7 +121,9 @@ def perform_job():
         with open("dataset-metadata.json", 'r') as fin:
             logger.debug(fin.read())
         result = execute(f"kaggle datasets create --dir-mode tar {vars}").decode("utf-8")
-        logger.info(f"Dataset creation result: {exception}")
+        # logger.info(f"Dataset creation result: {exception}") ## commented by nov05 on 2023-09-07
+        logger.info(f"Dataset creation result: {result}")
+
         if "Subtitle length" in result :
             logger.critical(f"Error. Dataset not created. {result}")
             raise Exception(f"Error. Dataset not created. {result}")
