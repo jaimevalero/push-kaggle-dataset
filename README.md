@@ -2,7 +2,7 @@
 
 This action push data from a github repository to a dataset at [kaggle.](https://kaggle.com)   
 
-Use this action to keep synchronized your datasets at kaggle with your repositories.
+Use this action to keep synchronized your datasets at kaggle with your github repositories.
 
 Please bear in mind that this action do NOT work with kernels nor notebooks, so it is of not use on competitions.
 
@@ -93,7 +93,7 @@ jobs:
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
       - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v2 # This is the action
+        uses: jaimevalero/push-kaggle-dataset@v3 # This is the action
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
