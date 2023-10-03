@@ -57,16 +57,12 @@ def copy_files():
             if ".git" in expanded_dataset_file : continue
             try :
                 src = expanded_dataset_file
-                #dst = current_work_directory + "/" + os.path.basename(expanded_dataset_file).rstrip('/')
                 dst = current_work_directory + expanded_dataset_file.replace(GITHUB_WORKSPACE,"").rstrip('/')
                 logger.info(f"copy {src} to {dst}")
                 is_directory = os.path.isdir(src)
                 if is_directory :
                     shutil.copytree(src,dst,ignore=ignore)
                 else:
-                    # If file already is there, we do not copy it
-                    #file_not_exists_on_dst = not os.path.exists(expanded_dataset_file.split("/")[-1])
-                    #if file_not_exists_on_dst :
                     os.makedirs(os.path.dirname(dst), exist_ok=True)
                     shutil.copy(src,dst)
             except Exception as e:
@@ -81,13 +77,12 @@ def perform_job():
     """
         Prepare temp dir, create metadata if datasets is new , or download metadata from kaggle if datasets already exists.
     """
-    #commit_message=execute(" git log --oneline --format=%B -n 1 HEAD ").decode("utf-8").replace("\n","")
     commit_message= get_param('GITHUB_SERVER_URL') + "/"+ get_param('GITHUB_REPOSITORY') +"/commit/"  +get_param('GITHUB_SHA')
     dirpath = tempfile.mkdtemp()
     os.chdir(dirpath)
 
     # Parse variables
-    INPUT_ID = get_param('INPUT_ID')
+    INPUT_ID          = get_param('INPUT_ID')
     INPUT_TITLE       = get_param('INPUT_TITLE',INPUT_ID.split("/")[1])
     INPUT_SUBTITLE    = get_param('INPUT_SUBTITLE',"")
     if len(INPUT_SUBTITLE) < 21:
