@@ -164,12 +164,12 @@ def get_param(param_name,default_value=""):
 		"GITHUB_REPOSITORY",
 		"GITHUB_SERVER_URL",
 		"GITHUB_SHA",
-        "GITHUB_WORKSPACE" ,
+		"GITHUB_WORKSPACE" ,
 		"INPUT_DESCRIPTION",
 		"INPUT_FILES",
 		"INPUT_IS_PUBLIC",
 		"INPUT_SUBTITLE",
-        "INPUT_TITLE" ] :
+		"INPUT_TITLE" ] :
         result = os.environ.get(param_name,default_value)
     else :
         raise Exception(f"Value {param_name} not exists")
