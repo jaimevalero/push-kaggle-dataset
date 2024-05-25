@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v1
+        uses: jaimevalero/push-kaggle-dataset@v3.1
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}

@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
       - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v1 # This is the action
+        uses: jaimevalero/push-kaggle-dataset@v3.1 # This is the action
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
